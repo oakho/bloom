@@ -1,0 +1,21 @@
+<div class="article-container clearfix">
+	<article style="float: left; width: 550px;">
+		<h1><?= $this->article->title; ?></h1>
+		<?php if($this->article->hasCategories()): ?>
+			<p>
+			<?php foreach($this->article->categories as $category): ?>
+				<a href="#"><?= $category->name; ?></a>
+			<?php endforeach; ?>
+			</p>
+		<?php endif; ?>
+		<p><?= $this->article->text; ?></p>
+	</article>
+	<?php if($this->article->hasImages()): ?>
+	<aside style="float: left; margin-left: 10px; width: 362px;">
+		<h3>Images</h3>
+		<?php foreach($this->article->images as $image): ?>
+			<img style="margin-top: 6px; width: 362px;" src="/<?= $image->path; ?>" alt="<?= $image->name; ?>">
+		<?php endforeach; ?>
+	</aside>
+	<?php endif; ?>
+</div>

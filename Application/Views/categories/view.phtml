@@ -1,0 +1,35 @@
+<div>
+  <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>
+            <h2><?= $this->category->name; ?></h2>
+            <span style="color: #666; font-weight: normal;"><?= $this->category->description; ?></span>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php if($this->category->hasArticles()): ?>
+          <?php foreach ($this->category->articles as $article): ?>
+          <tr>
+            <td>
+              <h3><a href="/articles/view/<?= $article->id; ?>"><?= $article->title; ?></a></h3>
+              <p>
+                <?php foreach ($article->categories as $category): ?>
+                  <a href="#"><?= $category->name; ?></a>
+                <?php endforeach; ?>
+              </p>
+              <p><?= $article->text ?></p>
+            </td>
+          </tr>
+          <?php endforeach; ?>
+        <?php else: ?>
+          <tr>
+            <td style="text-align: center;">
+              No articles
+            </td>
+          </tr>
+        <?php endif; ?>
+      </tbody>
+    </table>
+</div>

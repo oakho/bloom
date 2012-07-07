@@ -1,0 +1,68 @@
+<div>
+  <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>
+            <h2><?= ($this->isEdit) ? "Edit article" : "Add article"; ?></h2>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <form method="post" action="/admin/articles/<?= ($this->isEdit) ? 'edit/'. $this->article->id : 'add'; ?>" enctype="multipart/form-data" class="form-horizontal" style="margin-bottom: 0;">
+              <fieldset>
+                <div class="control-group">
+                  <label class="control-label" for="title">Title</label>
+                  <div class="controls">
+                    <input name="title" type="text" class="input-xlarge" id="title" value="<?= ($this->isEdit) ?$this->article->title : ''; ?>">
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label" for="text">Text</label>
+                  <div class="controls">
+                    <textarea name="text" class="span7" id="text" rows="15"><?= ($this->isEdit) ? $this->article->text : ''; ?></textarea>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label" for="status">Status</label>
+                  <div class="controls">
+                    <select name="status" id="status">
+                      <option value="1" <?= (($this->isEdit) and $this->article->status) ? 'selected' : ''; ?>>Online</option>
+                      <option value="0" <?= (($this->isEdit) and !$this->article->status) ? 'selected' : ''; ?>>Offline</option>
+                    </select>
+                  </div>
+                </div>
+                <?php if(count($this->categories)): ?>
+                <div class="control-group">
+                  <label class="control-label" for="categories[]">Categories</label>
+                  <div class="controls">
+                    <?php foreach($this->categories as $category): ?>
+                    <label class="checkbox">
+                      <?php 
+                        $checked = (($this->isEdit) and in_array_recursive($category->id, $this->article->categories)) ? 'checked' : '';
+                      ?>
+                      <input name="categories[]" type="checkbox" value="<?= $category->id; ?>" <?= $checked; ?>>
+                      <?= $category->name; ?>
+                    </label>
+                    <?php endforeach; ?>
+                  </div>
+                </div>
+                <?php endif; ?>
+                <div class="control-group">
+                  <label class="control-label" for="fileInput">Images</label>
+                  <div class="controls">
+                    <input name="image" class="input-file" id="fileInput" type="file">
+                  </div>
+                </div>
+                <div class="form-actions" style="margin-bottom: 0;">
+                  <button type="submit" class="btn btn-primary">Save</button>
+                  <button class="btn">Cancel</button>
+                </div>
+              </fieldset>
+            </form>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+</div>
