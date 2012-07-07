@@ -1,14 +1,14 @@
 <?php
 
-function in_array_recursive($needle, $haystack) 
-{ 
-    $it = new RecursiveIteratorIterator(new RecursiveArrayIterator($haystack)); 
+function in_array_recursive($needle, $haystack)
+{
+  $it = new RecursiveIteratorIterator(new RecursiveArrayIterator($haystack));
 
-    foreach($it as $element) { 
-        if($element == $needle) { 
-            return true; 
-        } 
-    } 
+  foreach($it as $element) {
+    if($element == $needle) {
+      return true;
+    }
+  }
 
-    return false; 
+  return false;
 }

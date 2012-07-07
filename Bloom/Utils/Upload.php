@@ -4,13 +4,14 @@ namespace Bloom\Utils;
 
 class Upload
 {
-	public static function file($path, $destination, callable $callback)
-	{
-		if(move_uploaded_file($path, $destination)) {
-			$callback();
-			return true;
-		}
+  public static function file($path, $destination, callable $callback)
+  {
+    if(move_uploaded_file($path, $destination)) {
+      $callback();
 
-		return false;
-	}
+      return true;
+    }
+
+    return false;
+  }
 }

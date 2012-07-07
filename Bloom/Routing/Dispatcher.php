@@ -10,34 +10,34 @@ use Bloom\Http\Response;
  * Dispatcher class which do all the hard stuff to match current request to a route,
  * get params, load the controller, call the action then send a response to the client.
  *
- * Usage : 
- *		Dispatcher::dispatch(new \Bloom\Http\Request(), new \Bloom\Http\Response());
- *		
+ * Usage :
+ *    Dispatcher::dispatch(new \Bloom\Http\Request(), new \Bloom\Http\Response());
+ *
  */
 class Dispatcher
 {
-	protected static $_currentRequest = null;
-	protected static $_response = null;
+  protected static $_currentRequest = null;
+  protected static $_response = null;
 
-	public static function dispatch(Request $request, Response $response)
-	{	
-	 	static::$_response = &$response;
-	 	
-	 	$request = Router::parseRequest($request);
-	 	static::$_currentRequest = &$request;
+  public static function dispatch(Request $request, Response $response)
+  {
+    static::$_response = &$response;
 
-		$routings   = $request->getRoutings();
-		$controller = static::_loadController($routings['controller']);
-		$controller->callAction();
+    $request = Router::parseRequest($request);
+    static::$_currentRequest = &$request;
 
-		$response->send();
-	}
+    $routings   = $request->getRoutings();
+    $controller = static::_loadController($routings['controller']);
+    $controller->callAction();
 
-	protected static function _loadController($controllerName)
-	{
-		$controller = "\\Application\\Controllers\\". ucfirst($controllerName) ."Controller";
-		$controller = new \ReflectionClass($controller);
-		
-		return $controller->newInstance(static::$_currentRequest, static::$_response);
-	}
+    $response->send();
+  }
+
+  protected static function _loadController($controllerName)
+  {
+    $controller = "\\Application\\Controllers\\". ucfirst($controllerName) ."Controller";
+    $controller = new \ReflectionClass($controller);
+
+    return $controller->newInstance(static::$_currentRequest, static::$_response);
+  }
 }

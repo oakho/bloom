@@ -1,12 +1,12 @@
 <?php if($this->hasMessages()): ?>
 <div class="row">
-	<?php foreach($this as $message): ?>
-	<div class="span12">
-		<div class="alert alert-<?= $this->getClass($message['type']); ?>">
-		  <a class="close" data-dismiss="alert" href="#">×</a>
-		  <?= $message['message']; ?>
-		</div>
-	</div>
-	<?php endforeach; ?>
+  <?php foreach($this as $message): ?>
+  <div class="span12">
+    <div class="alert alert-<?= $this->getClass($message['type']); ?>">
+      <a class="close" data-dismiss="alert" href="#">×</a>
+      <?= $message['message']; ?>
+    </div>
+  </div>
+  <?php endforeach; ?>
 </div>
 <?php endif; ?>
