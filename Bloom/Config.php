@@ -2,38 +2,39 @@
 
 namespace Bloom;
 
+use Bloom\Utils\File;
+use Bloom\Utils\Folder;
+
 class Config
 {
   protected static $_configs = [];
 
-  public static function loadConfigs(array $paths)
+  public static function load(array $paths)
   {
     foreach ($paths as $path) {
-      Utils\Folder::iterateFilesOfFolder(
-        $path,
-        function($entry) use ($path) {
-          $entryName = Utils\File::getFileName($entry);
-          $entryContent = Utils\File::loadFile($path . DS . $entry);
+      $callback = function($entry) use ($path) {
+        $name = File::getName($entry);
+        $content = File::load($path . DS . $entry);
 
-          if(is_array($entryContent)) {
-            static::$_configs[$entryName] = $entryContent;
-          }
+        if(is_array($content)) {
+          static::$_configs[$name] = $content;
         }
-      );
+      };
+
+      Folder::iterateFiles($path, $callback);
     }
   }
 
-  public static function getAllConfigs()
+  public static function getAll()
   {
     return static::$_configs;
   }
 
-  public static function getConfigs($file)
+  public static function get($file)
   {
     if (is_array(static::$_configs[$file])) {
       return static::$_configs[$file];
-    }
-    else {
+    } else {
       throw new \Exception("Can't find {$file}'s configurations");
     }
   }

@@ -29,10 +29,10 @@ require(LIBRARY_PATH . DS ."Utils". DS . "Common.php");
 Autoloader::register([BASE_PATH]);
 
 // Initialize application's config files
-Config::loadConfigs([CONFIGS_PATH]);
+Config::load([CONFIGS_PATH]);
 
 // Initialize database
-Database::connect(Config::getConfigs("database"));
+Database::connect(Config::get("database"));
 
 // Dispatch the request and the response
 Dispatcher::dispatch(new Request(), new Response());

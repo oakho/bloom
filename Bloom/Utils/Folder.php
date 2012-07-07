@@ -4,7 +4,7 @@ namespace Bloom\Utils;
 
 class Folder
 {
-  public static function iterateFilesOfFolder($path, callable $callback)
+  public static function iterateFiles($path, callable $callback)
   {
     if($handle = opendir($path)) {
       while (($entry = readdir($handle)) !== false) {
@@ -12,7 +12,6 @@ class Folder
           call_user_func($callback, $entry);
         }
       }
-
       closedir($handle);
 
       return true;

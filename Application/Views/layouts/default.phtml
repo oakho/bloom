@@ -101,7 +101,7 @@
     <header></header>
     <?= $this->flashMessages; ?>
     <?= $this->content ?>
-    <?php if(\Bloom\Config::getConfigs("application")['debug'] === true): ?>
+    <?php if(\Bloom\Config::get("application")['debug'] === true): ?>
     <div class="sqlqueries">
       <table class="table table-bordered">
         <thead>
