@@ -1,34 +1,9 @@
 #Bloom v0.1.1
 
-##Dispatcher
+Simple & lightweight PHP Framework heavily inspired from great framework like Cake, Laravel or Fuel.
 
-Implémenter le chargement du controller et son action (x)
-Implémenter l'envoie de la response (x)
+My purpose behind the project was to understand all of the cogwheel acting together in a MVC framework and experiment the PHP language, especially new PHP 5.4 features.
 
-##Request
+This is still a work in progress.
 
-Gestion des methods POST/GET (x)
-Trouver un mot qui a plus de sens que segments (x)
-
-##Response
-
-Implémenter la classe Response (x)
-
-##Database
-
-Implémenter un query builder pour automatiser la création des requètes SQL (x)
-Implémenter Silverleaf pour gérer les relations entre les différents models
-
-##Helpers
-
-Implémenter une classe générique pour la création d'Helpers (x)
-Implémenter un Helper pour générer des formulaires
-
-##Session
-
-Implémenter une classe pour la gestion des Sessions
-
-##Auth
-
-Implémenter une classe et/ou un trait pour la gestion de l'authentification (x)
-
+Cheers !
