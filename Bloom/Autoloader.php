@@ -4,6 +4,8 @@ namespace Bloom;
 
 require "Utils/Klass.php";
 
+use Bloom\Utils\Klass;
+
 class Autoloader
 {
   /**
@@ -29,7 +31,7 @@ class Autoloader
     foreach ($paths as $path) {
       spl_autoload_register(function($class) use ($path) {
         set_include_path($path);
-        spl_autoload(\Bloom\Utils\Klass::getClassPath($class));
+        spl_autoload(Klass::getClassPath($class));
       });
     }
   }
